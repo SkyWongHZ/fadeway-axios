@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "outDir": "./dist",  // 指定输出目录
+      "rootDir": "./src",       // 指定源文件目录（如果您的 TypeScript 文件在 src 文件夹中）
+      "module": "commonjs",
+      "target": "es2015",     // 根据需要选择目标 JS 版本
+      "lib": ["es2015", "dom"],
+      "declaration": true, // 生成声明文件
+      "esModuleInterop": true,  // 允许导入非 ES 模块
+      "forceConsistentCasingInFileNames": true,
+      "strict": true
+    },
+    "include": ["src/**/*"],  // 包含源代码目录
+    "exclude": ["node_modules", "dist"] // 排除目录
+  }

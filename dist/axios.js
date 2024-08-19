@@ -23,14 +23,14 @@ instance.interceptors.request.use((config) => {
     if (config.headers) {
         config.headers.Authorization = localStorage.getItem('token');
     }
-    
+    console.log('config:', config);
     return config;
 }, (error) => {
     return Promise.reject(error);
 });
 instance.interceptors.response.use((response) => {
     if (response.data.code && response.data.code !== 200) {
-        
+        console.log(response.data.message);
     }
     return response;
 }, (error) => {
@@ -38,11 +38,11 @@ instance.interceptors.response.use((response) => {
 });
 exports.default = {
     get(url, params = {}, config = {}) {
-        
+        console.log('params', params);
         return instance.get(dataUrl + url, Object.assign(Object.assign({}, config), { params }))
             .then(response => response.data)
             .catch(error => {
-            
+            console.log(error.message || "An error occurred");
             return Promise.reject(error);
         });
     },
@@ -50,10 +50,8 @@ exports.default = {
         return instance.post(dataUrl + url, params, Object.assign(Object.assign({}, config), { signal: config.signal }))
             .then(response => response.data)
             .catch(error => {
-            
+            console.log(error.message || "An error occurred");
             return Promise.reject(error);
         });
     },
 };
-
-
